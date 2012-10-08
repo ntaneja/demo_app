@@ -1,5 +1,9 @@
 DemoApp::Application.routes.draw do
-  resources :micoposts
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  resources :microposts
 
   resources :users
 
