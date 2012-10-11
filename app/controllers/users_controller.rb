@@ -47,6 +47,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
         flash[:success] = "Welcome to the Sample App! Have a blast! "
+        redirect_t @user
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
