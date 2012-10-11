@@ -1,7 +1,10 @@
 <h1>Listing users</h1>
 
+<%= will_paginate %>
+
 <table>
   <tr>
+	<th></th>
     <th>Name</th>
     <th>Email</th>
     <th></th>
@@ -11,15 +14,19 @@
 
 <% @users.each do |user| %>
   <tr>
+	<td><%= gravatar_for user %></td>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% if current_user.admin? && !current_user?(user) %>
+    	<td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
+<%= will_paginate %>
 
 <%= link_to 'New User', signup_path %>
